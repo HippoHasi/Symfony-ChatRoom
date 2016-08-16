@@ -1,0 +1,7 @@
+.sheet{width: 350px; height: 250px; border-radius: 6px; float: left; margin: 30px; 
+	border-left: 1px solid #d4a190; border-top: 1px solid #d4a190;
+	border-right: 3px groove #d4a190; border-bottom: 3px groove #d4a190;}
+.title{width: 150px; height: 50px; float: left; z-index: 3; margin-top: -20px; margin-left: 10px;}
+.sheet p {margin: 20px; font-family: "Buxton Sketch"; font-size: 14px; letter-spacing: 1px; line-height: 2em; float: left;}
+.more {font-family: "SketchFlow Print"; font-size: 16px; float: right; margin-bottom: 10px; margin-right: 10px; 
+	font-weight: bold; color: #757575;}

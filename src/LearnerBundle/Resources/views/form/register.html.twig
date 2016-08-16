@@ -1,0 +1,25 @@
+{# src/LearnerBunddle/Resources/views/form/register.html.twig #}
+{% extends 'base.html.twig' %}
+{% form_theme form 'LearnerBundle:form:fields.html.twig' %}
+
+{% block title %}Register{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+    <link href="{{asset('css/register_login.css')}}" rel="stylesheet" />
+{% endblock %}
+{% block header %}{{parent()}}{% endblock %}
+{% block sidebar %}{{parent()}}{% endblock %}
+{% block content %}
+<div class="form">
+	<h1>Register</h1>
+	{{ form_start(form) }}
+		{{ form_errors(form) }}
+		{{ form_row(form.email) }}
+		{{ form_row(form.username) }}
+		{{ form_row(form.plainPassword.first) }}
+		{{ form_row(form.plainPassword.second) }}
+		{{ form_row(form.avatar) }}
+	{{ form_end(form) }}
+</div>
+{% endblock %}
+{% block footer %}{{parent()}}{% endblock %}

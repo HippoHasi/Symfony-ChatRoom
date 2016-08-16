@@ -1,0 +1,19 @@
+{# src/LearnerBundle/Resources/views/userList.html.twig #}
+{% block stylesheets %}
+    <link href="{{asset('css/blog.css')}}" rel="stylesheet" />
+{% endblock %}
+
+<div id="userList">
+<ul>
+	{% for user in users %}
+		<li>
+			{% if(user.avatar) %}
+		        <a href="{{ url('blog', {'username': user.username}) }}"><img src="{{ asset('uploads/avatars/') ~ user.avatar }}" alt="" style="width:50px; height:50px;"/></a>
+		    {% else %}
+		    	<div style="width:50px; height:50px;"></div>
+		    {% endif %}
+			<a href="{{ url('blog', {'username': user.username}) }}">{{ user.username }}</a>
+		</li>
+	{% endfor %}
+</ul>
+</div>

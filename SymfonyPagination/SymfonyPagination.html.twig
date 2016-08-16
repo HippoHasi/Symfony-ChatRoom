@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Symfony Pagination{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{asset('css/page.css')}}" rel="stylesheet" />
+{% endblock %}
+
+{% block header %}{{parent()}}{% endblock %}
+{% block content %}
+    <div class="pagination">
+        <ul>
+            {% for i in 1..totalPages %}
+                {% if loop.first %}            
+            <li class="prev {%if currentPage==1%} disabled {%endif%}"><a href="{{url('blog', {'currentPage': currentPage-1})}}">Prev</a></li>
+                {% endif %}
+
+            <li {%if currentPage==loop.index%} class="active" {%endif%}><a href="{{url('blog', {'currentPage': loop.index})}}">{{loop.index}}</a></li>
+             
+                {% if loop.last %}
+            <li class="next {%if currentPage==totalPages%} disabled {%endif%}"><a href="{{url('blog', {'currentPage': currentPage+1})}}">Next</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>    
+{% endblock %}

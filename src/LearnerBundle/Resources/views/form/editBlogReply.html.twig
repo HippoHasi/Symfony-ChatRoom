@@ -1,0 +1,31 @@
+{# src/LearnerBunddle/Resources/views/form/editBlog.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Blog{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+    <link href="{{asset('css/blog.css')}}" rel="stylesheet" />
+{% endblock %}
+{% block header %}{{parent()}}{% endblock %}
+{% block sidebar %}{{parent()}}{% endblock %}
+{% block content %}
+<div class="form"><h1>编辑此话题</h1>
+	<form action="{{ url('editBlog', {'id': blog.id}) }}" method="post" enctype="multipart/form-data">
+		<label for="content">内容:</label>
+		<textarea id="textarea_widget" name="content">{{ blog.content }}</textarea></br>
+		{% if blog.pic %}
+            <img src="{{ asset('uploads/pic/') ~ blog.pic }}" alt="" /></br>
+            <a href="{{ url('blogDeleteFile', {'id': blog.id, 'file': blog.pic, 'blog_id': reply.blog.id}) }}">删除图片</a>
+        {% endif %}
+		<button type="submit">修改</button>
+	</form>
+</div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
+    <script type="text/javascript">
+        window.onload = function(){
+            CKEDITOR.replace('textarea_widget', {width: 700, height: 200, enterMode: CKEDITOR.ENTER_BR, uiColor: '#eaefee'});
+        }
+    </script>
+{% endblock %}	

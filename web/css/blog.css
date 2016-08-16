@@ -1,0 +1,41 @@
+.sidebar{width: 20%; background-color: #fff; border-radius: 8px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+#userList ul{margin: 0; padding: 0;}
+#userList ul li{width: 50px; height: 70px;  float: left; display: block; 
+	border-style: none; line-height: 0.5em; margin-left:3px; margin-top: 2px;}
+#userList a {font-family:"Calibri Light"; font-size: 10px; color: #757575;}
+
+.new {margin-left: 800px;}
+.light_button {margin-top: 0;}
+.blog{width:100%; margin-top: 3px; margin-bottom: 3px; background-color: #fff; border-radius: 8px; float: left; 
+	padding-left: 5px; letter-spacing: 1px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+span, p{font-size: 14px; font-weight: bold;}
+.replys span, .replys p{font-weight: normal;}
+.ng-valid .ng-dirty {
+	border-color: #78FA89;
+}
+.replys { 
+	background-color: #f5f7f7;
+	border-radius: 8px; 
+    border-top: 1px solid #e6e9e9;
+    border-left: 1px solid #e6e9e9;
+    border-bottom: 3px solid #e6e9e9;
+    border-right: 2px solid #e6e9e9;
+    margin: 10px 10px 0 0px;
+    padding-left: 5px;
+}
+button {
+	margin-bottom: 5px;
+}
+.edit_del {
+	float: left;
+	margin: 0 5px;
+}
+.delete {
+	float: right;
+	margin: 0 10px;
+}
+

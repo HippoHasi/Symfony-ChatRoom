@@ -1,0 +1,8 @@
+.form {padding-left: 150px; margin-bottom: 20px;}
+h1 {padding: 0 20px 20px 20px;}
+input[type="email"],
+input[type="text"],
+input[type="password"] {
+	margin-left: 30px;
+}
+.form_errors{color: #C70039; font-weight: 800;}

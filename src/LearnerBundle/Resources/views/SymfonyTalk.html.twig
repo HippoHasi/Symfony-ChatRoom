@@ -1,0 +1,67 @@
+{# src/LearnerBunddle/Resources/views/SymfonyTalk.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Symfony Talk{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+    <link href="{{asset('css/SymfonyTalk.css')}}" rel="stylesheet" />
+{% endblock %}
+
+{% block header %}{{parent()}}{% endblock %}
+{% block sidebar %}
+	 <ul>
+        <li><a href="{{ url('symfonyTalk', {'category': 'Installation'}) }}">Installation</a>
+            <p>– Problems with getting it running</p></li>
+        <li><a href="{{ url('symfonyTalk', {'category': 'Controllers'}) }}">Controllers</a>
+            <p>– Functions, methods on objects</p></li>
+        <li><a href="{{ url('symfonyTalk', {'category': 'Templating'}) }}">Templating</a>
+            <p>– Twig, HTML and CSS presentation issues</p></li>
+        <li><a href="{{ url('symfonyTalk', {'category': 'Routing'}) }}">Routing</a>
+            <p>– Parsing and generating absolute or relative URLs</p></li>
+        <li><a href="{{ url('symfonyTalk', {'category': 'Doctrine'}) }}">Database & Doctrine</a>
+            <p>– Persisting and reading data to and from a database</p></li>
+        <li><a href="{{ url('symfonyTalk', {'category': 'Forms'}) }}">Forms</a>
+            <p>– HTML forms</p></li>
+        <li><a href="{{ url('symfonyTalk', {'category': 'Configuration'}) }}">Configuration</a>
+            <p>– Set up and customize Symfony applications</p></li>
+        <li><a href="{{ url('symfonyTalk', {'category': 'Other'}) }}">Other</a>
+            <p>– Other Symfony problems</p></li>
+    </ul>   
+{% endblock %}
+{% block content %}
+    <div id="title">
+	<h1>Symfony {{ category }} Talk</h1>
+    <a href="{{ url('createSymfonyTalk') }}" class="light_button">Add New Topic</a>
+    </div>
+
+    <table>
+                <tr><th>Topic</th><th>Visits</th><th>Submitted By</th><th>Created At</th></tr>
+    	{% for talk in symfonyTalk %}
+            {% for i in 0..10 %}
+                <tr class="{{ cycle(['odd', 'even'], i) }}">
+            {% endfor %}
+            		<td><a href="{{ url('symfonyTalkDetail', {'id': talk.id}) }}">{{ talk.title }}</a></td>
+                    <td>{{ talk.count }}</td>
+                    <td>{{ talk.author }}</td> 
+                    <td>{{ talk.submitAt|date('d-m-Y') }}</td>
+            	</tr>
+            
+    	{% endfor %}
+    </table>
+
+    <div class="pagination">
+        <ul>
+            {% for i in 1..totalPages %}
+                {% if loop.first %}            
+            <li class="prev {%if page==1%} disabled {%endif%}"><a href="{{url('symfonyTalk', {'category': category, 'page': page-1})}}">Prev</a></li>
+                {% endif %}
+
+            <li {%if page==loop.index%} class="active" {%endif%}><a href="{{url('symfonyTalk', {'category': category, 'page': loop.index})}}">{{loop.index}}</a></li>
+             
+                {% if loop.last %}
+            <li class="next {%if page==totalPages%} disabled {%endif%}"><a href="{{url('symfonyTalk', {'category': category, 'page': page+1})}}">Next</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>    
+{% endblock %}

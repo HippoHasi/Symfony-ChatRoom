@@ -1,0 +1,27 @@
+{# src/LearnerBunddle/Resources/views/form/login.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+    <link href="{{asset('css/register_login.css')}}" rel="stylesheet" />
+{% endblock %}
+{% block header %}{{parent()}}{% endblock %}
+{% block sidebar %}{{parent()}}{% endblock %}
+{% block content %}
+<div class="form"><h1>Login</h1>
+	{% if error %}
+		<div class="form_errors">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+	{% endif %}
+	<form action="{{ path('login_check') }}" method="post">
+		<label for="email">Email:</label>
+		<input type="text" id="email" name="_username" value="{{ last_username }}" /> {# field name has to be _username #}</br>
+		<label for="password">Password:</label>
+		<input type="password" id="password" name="_password" /> {# field name has to be _password #}</br>
+		<button type="submit">login</button>
+		{# <input type="hidden" name="_target_path" value="" /> #}
+		{# csrf_token function generates CSRF token, this function requires a token ID, which must be set to authenticate when using the login form. Doing this as Security componant will check for the CSRF token #}
+		<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+	</form>
+</div>
+{% endblock %}		

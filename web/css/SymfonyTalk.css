@@ -1,0 +1,38 @@
+.sidebar { width:30%; height:100%; float: left; position: relative; 
+    font-family:"Calibri Light"; margin:20px; font-weight: bold;}
+.sidebar ul li {display: block; font-size: 16px; line-height: 1em; border-bottom: 1px solid #cfe7e7; text-align: left; 
+	letter-spacing: 1px; margin-top: 10px;}
+.sidebar p {font-size: 14px; font-weight: 400;}
+.sidebar a, 
+.sidebar a:link, 
+.sidebar a:visited {color: #8ed1d0;}
+.sidebar a:hover {color: #66a9a8;}
+#content { width:65%; height:100%; float: right; position: relative; margin-top: 10px; font-size: 14px; letter-spacing: 1px;}
+table {width:90%; height: 100%;}
+tr:hover {background-color: #dbe7e7;}
+td{padding-left: 5px;}
+th {background-color: #dbe7e7;}
+.odd {background-color: #eaefee;}
+table a,
+table a:link,
+table a:visited {color: #757575;}
+table a:hover {color: #581845;}
+
+#title h1 {padding: 0 20px 20px 20px; float: left;}
+
+/* create symfony talk css */
+.form{margin-bottom: 20px;}
+.form h1{padding: 0 20px 20px 20px;}
+.form_errors{color: #C70039; font-weight: 800;}
+input[type="text"],
+input[type="file"],
+select{
+	margin-left: 20px;
+}
+
+/* symfony talk details css */
+.talk {margin-right: 20px; border-bottom: 1px dashed #6d555c; padding-bottom: 10px;}
+h2{text-decoration: underline;}
+span{color: #6d555c; font-weight: 600; }
+.talk img {width: 700px; height: 150px;}
+.reply {float: right; margin-right: 20px;}

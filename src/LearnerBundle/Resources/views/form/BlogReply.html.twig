@@ -1,0 +1,27 @@
+{# src/LearnerBunddle/Resources/views/form/BlogReply.html.twig #}
+{% form_theme form with ['LearnerBundle:form:fields.html.twig'] %}
+
+{% block title %}Blog Reply{% endblock %}
+{% block stylesheets %}
+    <link href="{{asset('css/main.css')}}" rel="stylesheet" />
+    <link href="{{asset('css/blog.css')}}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+<div class="form" style="margin-top:10px;">
+	{{ form_start(form, {'action': url('blogReply', {'blog_id': blog_id}), 'method': 'POST'}) }}
+		{{ form_errors(form) }}
+		{{ form_label(form.content, '回复') }}
+		{{ form_widget(form.content, {'id': 'textarea_widget'}) }}
+		{{ form_row(form.pic) }}
+	{{ form_end(form) }}
+</div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
+    <script type="text/javascript">
+        window.onload = function(){
+            CKEDITOR.replace('textarea_widget', {width: 700, height: 150, enterMode: CKEDITOR.ENTER_BR, uiColor: '#eaefee'});
+        }
+    </script>
+{% endblock %}

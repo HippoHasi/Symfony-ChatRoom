@@ -1,0 +1,31 @@
+{# src/LearnerBunddle/Resources/views/form/editReply.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Reply{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+    <link href="{{asset('css/SymfonyTalk.css')}}" rel="stylesheet" />
+{% endblock %}
+{% block header %}{{parent()}}{% endblock %}
+{% block sidebar %}{{parent()}}{% endblock %}
+{% block content %}
+<div class="form"><h1>Edit your reply</h1>
+	<form action="{{ url('symfonyReplyEdit', {'id': reply.id}) }}" method="post" enctype="multipart/form-data">
+		<label for="content">Reply:</label>
+		<textarea id="textarea_widget" name="content">{{ reply.content }}</textarea></br>
+		{% if reply.screenshot %}
+            <img src="{{ asset('uploads/screenshots/replys/') ~ reply.screenshot }}" alt="" /></br>
+            <a href="{{ url('symfonyDeleteFile', {'id': reply.id, 'file': reply.screenshot, 'talk_id': reply.talk.id}) }}">Delete Screenshot</a>
+        {% endif %}
+		<button type="submit">Update</button>
+	</form>
+</div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
+    <script type="text/javascript">
+        window.onload = function(){
+            CKEDITOR.replace('textarea_widget', {width: 700, height: 200, enterMode: CKEDITOR.ENTER_BR, uiColor: '#eaefee'});
+        }
+    </script>
+{% endblock %}	

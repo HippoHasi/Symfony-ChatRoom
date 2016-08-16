@@ -1,0 +1,293 @@
+body{font-family:"Calibri Light"; background-color: #f9f9f9; font-size:12px; 
+    text-decoration:none; line-height: 1.5em; color: #757575;}
+#all {margin: 0px auto; width: 1150px;}
+#header { width:100%; height:105px; margin:0px auto;}
+    #logo {width: 25%; float: left; position: relative;}
+    #nav {width: 50%; float: left;  margin-top: 40px; position: relative;}
+    #nav ul li {display: block; font-size: 12px; margin-right: 10px; float: left; position: relative;}
+    #nav a {color: #757575;}
+    #login {width: 20%; float: right; position: relative;}
+    #login a {margin-right: 5px; float: right;}
+    #login p {float: left; margin-top:20px ;margin-right: 5px; font-size: 14px; font-weight: bold;}
+.sidebar { width:15%; height:100%; float: left; position: relative;
+    font-family:"SketchFlow Print"; margin:20px; font-weight: bold;}
+.sidebar ul li {display: block; font-size: 14px; line-height: 3.5em; border-bottom: 1px dashed #d4a190; text-align: center; cursor: pointer;}
+.toggleMenu {width:100%; background-color: #fff; border-radius: 8px;}
+.toggleMenu ul li {font-size: 10px; line-height: 2em;}
+
+#content { width:75%; height:100%; float: right; position: relative; margin-top:10px; min-height: 450px;}
+.flash-notice {margin: 10px 20px;}
+#footer { width: 100%; height: 100px; margin: 10px auto; border-top: 2px groove #9D9D9D; float: left; position: relative;
+    text-align: center; font-weight: 500;}
+a:link, a:visited {text-decoration:none;}
+
+
+
+/* Forms
+-------------------------------------------------------------- */
+/**
+ * Known limitation: by default, Chrome and Safari on OS X allow very limited
+ * styling of `select`, unless a `border` property is set.
+ */
+
+/**
+ * 1. Correct color not being inherited.
+ *    Known issue: affects color of disabled elements.
+ * 2. Correct font properties not being inherited.
+ * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+    color: inherit; /* 1 */
+    font: inherit; /* 2 */
+    margin: 0; /* 3 */
+}
+/**
+ * Address `overflow` set to `hidden` in IE 8/9/10/11.
+ */
+button {
+    overflow: visible;
+}
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+ * Correct `select` style inheritance in Firefox.
+ */
+button,
+select {
+    text-transform: none;
+}
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button; /* 1 */
+    cursor: pointer; /* 2 */
+}
+/**
+ * Re-set default cursor for disabled elements.
+ */
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+input {
+    line-height: normal;
+}
+/**
+ * It's recommended that you don't attempt to style these elements.
+ * Firefox's implementation doesn't respect box-sizing, padding, or width.
+ *
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box; /* 1 */
+    padding: 0; /* 2 */
+}
+/**
+ * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+ * `font-size` values of the `input`, it causes the cursor style of the
+ * decrement button to change from `default` to `text`.
+ */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari and Chrome
+ *    (include `-moz` to future-proof).
+ */
+input[type="search"] {
+    -webkit-appearance: textfield;
+    box-sizing: content-box;
+}
+
+/**
+ * Remove default vertical scrollbar in IE 8/9/10/11.
+ */
+textarea {
+  height: 150px;
+}
+
+select,
+textarea,
+input:not([type]),
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"], 
+input[type="file"] {
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0 ,0.1);
+    border-radius: 4px;
+    color: #444;
+    font-size: 14px;
+    font-weight: 400;
+    outline: none;
+    padding: 10px;
+    width: 40%; 
+    margin: 5px;
+}
+
+select:focus,
+textarea:focus,
+input:not([type]):focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+input[type="file"]:focus {
+    background-color: #ededed;
+    transition: all 0.1s ease-in-out;
+}
+
+/* Buttons
+-------------------------------------------------------------- */
+
+button,
+.button,
+input[type="reset"],
+input[type="submit"],
+input[type="button"] {
+    background: none;
+    background-color: #cd1212;
+    background-clip: border-box;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+    outline: none;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    padding: 0 20px;
+    text-transform: uppercase;
+    line-height: 30px;
+    display: inline-block;
+    zoom: 1; *display: inline;
+    box-shadow: none;
+    text-shadow: none;
+    margin-top: 15px;
+}
+
+#light_button,
+.light_button{
+    background: none;
+    background-color: #f0d5d3;
+    background-clip: border-box;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+    outline: none;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    padding: 0 20px;
+    text-transform: uppercase;
+    line-height: 20px;
+    display: inline-block;
+    zoom: 1; *display: inline;
+    box-shadow: none;
+    text-shadow: none;
+    margin-top: 20px;
+    margin-left: 15px;
+    float: left;
+}
+
+/*hover*/
+button:hover,
+button:focus,
+.button:hover,
+.button:focus,
+input[type="reset"]:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background: none;
+    background-color: #a90e0e;
+    color: #fff;
+}
+
+.light_button:hover,
+.light_button:focus,
+#light_button:hover,
+#light_button:focus {
+    background: none;
+    background-color:#e1cac8;
+    color: #fff;
+}
+/* Active */
+button:active,
+.button:active,
+input[type="reset"]:active,
+input[type="submit"]:active,
+input[type="button"]:active {
+    background: none;
+    background-color: #a90e0e;
+    box-shadow: none;
+    text-shadow: none;
+}
+.red-outline
+{
+    background-color: #fff;
+    border: 1px solid #d4a190;
+    border-radius: 4px;
+    padding: 0 20px;
+    line-height: 20px;
+    cursor: pointer;
+    display: inline-block;
+}
+.red-outline:hover, 
+.red-outline:active,
+.red-outline:focus
+{
+    background-color: #cd1212;
+    color: #fff!important;
+}
+#form_content{
+    config.width:75%;
+    config.height: 300px;
+}

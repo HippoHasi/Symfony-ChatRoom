@@ -1,0 +1,25 @@
+{# src/LearnerBunddle/Resources/views/form/reply.html.twig #}
+{% form_theme form 'LearnerBundle:form:fields.html.twig' %}
+{% block title %}{% endblock %}
+{% block stylesheets %}
+    <link href="{{asset('css/main.css')}}" rel="stylesheet" />
+    <link href="{{asset('css/SymfonyTalk.css')}}" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+<div class="form" style="margin-top:10px;">
+	{{ form_start(form, {'action': url('symfonyTalkReply', {'talk_id': talk_id}), 'method': 'POST'}) }}
+		{{ form_errors(form) }}
+		{{ form_label(form.content, 'Reply') }}
+		{{ form_widget(form.content, {'id': 'textarea_widget'}) }}
+		{{ form_row(form.screenshot) }}
+	{{ form_end(form) }}
+</div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
+    <script type="text/javascript">
+        window.onload = function(){
+            CKEDITOR.replace('textarea_widget', {width: 700, height: 200, enterMode: CKEDITOR.ENTER_BR, uiColor: '#eaefee'});
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,51 @@
+{# src/LearnerBundle/Resources/views/form/CreateSymfonyTalk.html.twig #}
+{% extends 'base.html.twig' %}
+{% form_theme form 'LearnerBundle:form:fields.html.twig' %}
+
+{% block title %}SymfonyTalk{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+    <link href="{{asset('css/SymfonyTalk.css')}}" rel="stylesheet" />
+{% endblock %}
+{% block header %}{{parent()}}{% endblock %}
+{% block sidebar %}
+	 <ul>
+        <li><a href="{{ url('symfonyTalk', {'category': '1'}) }}">Installation</a>
+            <p>– Problems with getting it running</p></li>
+        <li><a href="{{ url('symfonyTalk', {'category': '2'}) }}">Controllers</a>
+            <p>– Functions, methods on objects</p></li>
+        <li><a href="{{ url('symfonyTalk', {'category': '3'}) }}">Templating</a>
+            <p>– Twig, HTML and CSS presentation issues</p></li>
+        <li><a href="{{ url('symfonyTalk', {'category': '4'}) }}">Routing</a>
+            <p>– Parsing and generating absolute or relative URLs</p></li>
+        <li><a href="{{ url('symfonyTalk', {'category': '5'}) }}">Database & Doctrine</a>
+            <p>– Persisting and reading data to and from a database</p></li>
+        <li><a href="{{ url('symfonyTalk', {'category': '6'}) }}">Forms</a>
+            <p>– HTML forms</p></li>
+        <li><a href="{{ url('symfonyTalk', {'category': '7'}) }}">Configuration</a>
+            <p>– Set up and customize Symfony applications</p></li>
+        <li><a href="{{ url('symfonyTalk', {'category': '8'}) }}">Other</a>
+            <p>– Other Symfony problems</p></li>
+    </ul>   
+{% endblock %}
+{% block content %}
+<div class="form"><h1>Create a Symfony Talk</h1>
+	{{ form_start(form) }}
+		{{ form_errors(form) }}
+		{{ form_row(form.title) }}
+		{{ form_row(form.category) }}
+		{{ form_label(form.content, 'Content') }}
+		{{ form_widget(form.content, {'id': 'textarea_widget'}) }}
+		{{ form_row(form.screenshot) }}
+	{{ form_end(form) }}
+</div>
+{% endblock %}
+{% block footer %}{{parent()}}{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
+    <script type="text/javascript">
+	    window.onload = function(){
+			CKEDITOR.replace('textarea_widget', {width: 700, height: 250, enterMode: CKEDITOR.ENTER_BR, uiColor: '#eaefee'});
+		}
+	</script>
+{% endblock %}

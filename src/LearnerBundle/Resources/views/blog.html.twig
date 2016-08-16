@@ -1,0 +1,110 @@
+{# src/LearnerBundle/Resources/views/blog1.html.twig #} 
+{% extends 'base.html.twig' %}
+
+{% block title %}Hippo Blog{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{asset('css/blog.css')}}" rel="stylesheet" />
+{% endblock %}
+
+{% block header %}{{parent()}}{% endblock %}
+{% block sidebar %}
+	{{ render(controller('LearnerBundle:blog:userList')) }}
+{% endblock %}
+{% block content %}
+<div ng-app="Blog" ng-controller="BlogCtrl">
+    {% if (username == 'all') %}
+        <span ng-init="pass_username('{{username}}', '{{page}}')"></span> 
+    {% else %}
+        <span ng-init="pass_username('{{username}}', '{{page}}')">{{username}} 的空间</span>
+    {% endif %}
+    <div class="new"><a href="{{ url('createBlog') }}" title="新建话题"><img src="{{ asset('images/buttons/gif-0317.gif') }}"/></a></div>
+
+        <div class="blog" ng-repeat="blog in blogs"  id="posts">
+            <span>
+                {{'{{blog.author}}'}} | {{'{{blog.submitAt}}'}}
+            </span>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}  
+                <div class="edit_del" ng-if="blog.author == '{{app.user.username}}'">
+                    <a href="http://localhost/app_dev.php/editBlog/{{'{{blog.id}}'}}" title="修改"><img src="{{ asset('images/buttons/gif-0991.gif') }}"/></a>
+                    <a href="http://localhost/app_dev.php/deleteBlog/{{'{{blog.id}}'}}" title="删除"><img src="{{ asset('images/buttons/gif-0965.gif') }}"/></a>
+                </div>
+            {% endif %}
+            <p>{{'{{blog.content}}'}}</p>
+            <div ng-if = "blog.pics">
+                <img src="{{ asset('uploads/pic/') ~ '{{blog.pics}}' }}" alt="" style="width:600px; height:450px;"/><br>
+            </div>             
+            <div class="replys" ng-repeat="reply in blog.reply">
+                <span>
+                  {{'{{reply.author}}'}} | {{'{{reply.replyAt}}'}}
+                </span>                
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}  
+                    <div class="delete" ng-if="reply.author == '{{app.user.username}}'">
+                        <a href="http://localhost/app_dev.php/deleteBlogReply/{{'{{reply.id}}'}}" title="删除回复"><img src="{{ asset('images/buttons/gif-0965.gif') }}"/></a>
+                    </div>
+                {% endif %} 
+                <p>{{'{{reply.content}}'}}</p>              
+            </div>
+            <div>
+                <form name="replyForm" ng-show="isSelected(blog.id)" action="{{ url('blogReply') }}" method="post">
+                  Preview: {{'{{reply.content}}'}} <br><br>
+                  My Reply: <input type="text" name="content" ng-model="reply.content" required class="ng-dirty ng-valid" />
+                  <input type="hidden" name="blogId" value="{{'{{blog.id}}'}}"/>
+                  <input ng-disabled="replyForm.$invalid" type="submit" value="回复" />                 
+                </form>
+                {% if not is_granted('IS_AUTHENTICATED_FULLY') %} 
+                    <div id=""><a href="{{ url('login') }}" class="light_button">登录后回复</a></div>                     
+                {% endif %}             
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}                         
+                    {% if app.user.username %}
+                        <div ng-click="displayForm(blog.id)" ng-hide="hideButton(blog.id)" title="回复"><img src="{{ asset('images/buttons/gif-0318.gif') }}"/></div>
+                    {% endif %}
+                {% endif %}                 
+            </div>
+        </div>
+
+    {% if totalPages>0 %}
+    <div class="pagination">
+        <ul>
+            {% for i in 1..totalPages %}
+                {% if loop.first %}            
+            <li class="prev {%if page==1%} disabled {%endif%}"><a href="">Prev</a></li>
+                {% endif %}
+
+            <li {%if page==loop.index%} class="active" {%endif%} ng-click="pass_username('{{username}}', '{{loop.index}}')">
+                {{loop.index}}</li>
+             
+                {% if loop.last %}
+            <li class="next {%if page==totalPages%} disabled {%endif%}"><a href="">Next</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>    
+    {% endif %}        
+</div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/angular.min.js') }}"></script>
+    <script src="{{ asset('js/blog.js') }}"></script> 
+    <script src="{{ asset('js/jquery-3.0.0.min.js') }}"></script> 
+<script type="text/javascript">
+$(document).ready(function() {
+    var win = $(window);
+    win.scroll(function() {
+ 
+        if ($(document).height() - win.height() == win.scrollTop()) {
+            $('#loading').show();
+
+            $.ajax({
+                url: 'http://localhost/app_dev.php/getBlog/all/1',
+                dataType: 'html',
+                success: function(html) {
+                    $('#posts').append(html);
+                    $('#loading').hide();
+                }
+            });
+        }
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,55 @@
+{# src/LearnerBunddle/Resources/views/form/CreateBlog.html.twig #}
+{% extends 'base.html.twig' %}
+{% form_theme form 'LearnerBundle:form:fields.html.twig' %}
+
+{% block title %}Create Hippo Blog{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{asset('css/blog.css')}}" rel="stylesheet" />
+        {# Google web fonts #}
+    <link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700" rel='stylesheet' />
+        {# The main CSS file #}
+    <link href="{{asset('mini-upload-form/assets/css/style.css')}}" rel="stylesheet" />
+{% endblock %}
+
+{% block header %}{{parent()}}{% endblock %}
+{% block sidebar %}
+    {{ render(controller('LearnerBundle:blog:userList')) }}
+{% endblock %}
+{% block content %}
+<div class="form" style="margin-top:10px;" >
+    <form id="upload" method="post" action="{{ path('createBlog') }}" enctype="multipart/form-data">
+        <label for="content">我想说...:</label>
+        <textarea id="textarea_widget" name="content"></textarea></br>
+        <div id="drop">
+            图片上传
+            <a>Browse</a>
+            <input type="file" name="pics" multiple />
+        </div>
+        <ul>
+            {# The file uploads will be shown here #}
+        </ul>
+        <button type="submit">Submit</button>
+    </form>    
+</div>
+
+{% endblock %}
+{% block footer %}{{parent()}}{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
+    <script type="text/javascript">
+        window.onload = function(){
+            CKEDITOR.replace('textarea_widget', {width: 700, height: 200, enterMode: CKEDITOR.ENTER_BR, uiColor: '#eaefee'});
+        }
+    </script>
+
+        {# JavaScripts for mini-upload-form #}
+    {# <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> #}
+    <script src="{{ asset('mini-upload-form/assets/js/jquery-3.0.0.min.js') }}"></script>
+    <script src="{{ asset('mini-upload-form/assets/js/jquery.knob.js') }}"></script>
+        {# jQuery File Upload Dependencies #}
+    <script src="{{ asset('mini-upload-form/assets/js/jquery.ui.widget.js') }}"></script>
+    <script src="{{ asset('mini-upload-form/assets/js/jquery.iframe-transport.js') }}"></script>
+    <script src="{{ asset('mini-upload-form/assets/js/jquery.fileupload.js') }}"></script>    
+    <script src="{{ asset('mini-upload-form/assets/js/script.js') }}"></script>
+{% endblock %}

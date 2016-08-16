@@ -1,0 +1,30 @@
+{# LearnerBunddle/Resources/views/home.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+    <link href="{{asset('css/home.css')}}" rel="stylesheet" />
+{% endblock %}
+
+{% block header %}{{parent()}}{% endblock %}
+{% block sidebar %}{{parent()}}{% endblock %}
+{% block content %}
+	<div class="sheet">
+		<div class="title"><a href="{{ url('symfonyTalk') }}"><img src="{{ asset('images/symfony.png') }}" alt="symfony" /></a></div>
+		<p>From installation and creating first symfony page to mastering doctrine and configuring security system, talk about some problems I encountered and the way I solved them. Welcome you to share your Symfony thoughts.</p>
+		<a href="{{ url('symfonyTalk') }}" class="more">More...</a>
+	</div>
+	<div class="sheet">
+		<div class="title"><img src="{{ asset('images/git.png') }}" alt="git" /></div>
+	</div>
+	<div class="sheet">
+		<div class="title"><a href="{{ url('blog') }}"><img src="{{ asset('images/blog.png') }}" alt="blog" /></a></div>
+		<p style="font-family:'KaiTi';">在人生的不同阶段，我们有着不同的选择 不同的追求，从而也有了不同的收获及成就。但，那个遥远的 如画般的初中三年，虽已入了流年 是我不变的牵挂... <br>---致永恒的初中二班</p>
+		<a href="{{ url('blog') }}" class="more" style="font-family:'KaiTi';">更多...</a>
+	</div>
+	<div class="sheet">
+		<div class="title"><img src="{{ asset('images/news.png') }}" alt="news" /></div>
+	</div>
+
+{% endblock %}	

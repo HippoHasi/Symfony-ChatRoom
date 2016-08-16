@@ -1,0 +1,86 @@
+{# src/LearnerBunddle/Resources/views/form/SymfonyTalkDetail.html.twig #}
+{% extends 'base.html.twig' %}
+{% block title %}SymfonyTalkDetail{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+    <link href="{{asset('css/SymfonyTalk.css')}}" rel="stylesheet" />
+{% endblock %}
+{% block header %}{{parent()}}{% endblock %}
+{% block sidebar %}
+	 <ul>
+        <li><a href="{{ url('symfonyTalk', {'category': '1'}) }}">Installation</a>
+            <p>– Problems with getting it running</p></li>
+        <li><a href="{{ url('symfonyTalk', {'category': '2'}) }}">Controllers</a>
+            <p>– Functions, methods on objects</p></li>
+        <li><a href="{{ url('symfonyTalk', {'category': '3'}) }}">Templating</a>
+            <p>– Twig, HTML and CSS presentation issues</p></li>
+        <li><a href="{{ url('symfonyTalk', {'category': '4'}) }}">Routing</a>
+            <p>– Parsing and generating absolute or relative URLs</p></li>
+        <li><a href="{{ url('symfonyTalk', {'category': '5'}) }}">Database & Doctrine</a>
+            <p>– Persisting and reading data to and from a database</p></li>
+        <li><a href="{{ url('symfonyTalk', {'category': '6'}) }}">Forms</a>
+            <p>– HTML forms</p></li>
+        <li><a href="{{ url('symfonyTalk', {'category': '7'}) }}">Configuration</a>
+            <p>– Set up and customize Symfony applications</p></li>
+        <li><a href="{{ url('symfonyTalk', {'category': '8'}) }}">Other</a>
+            <p>– Other Symfony problems</p></li>
+    </ul>   
+{% endblock %}
+{% block content %}
+
+<div class="talk">
+    <h2>{{ symfonyTalk.title }}</h2>
+    <span>
+        {% if(talkUser.avatar) %}
+            <img src="{{ asset('uploads/avatars/') ~ talkUser.avatar }}" alt="" style="width:50px; height:50px;"/>
+        {% endif %}
+        {{ symfonyTalk.author }} | {{ symfonyTalk.submitAt|date('d-m-Y H:i:s') }}
+    </span>
+    <p>{{ symfonyTalk.content }}</p>
+    {% if symfonyTalk.screenshot %}
+        <img src="{{ asset('uploads/screenshots/') ~ symfonyTalk.screenshot }}" alt="" />
+    {% endif %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {% if symfonyTalk.author == app.user.username %}
+            <a href="..." >Edit</a><a href="..." >Delete</a>
+        {% endif %}
+    {% endif %}
+</div>
+
+{% if replys %}
+    {% for reply in replys %}
+        <div class="talk">
+            <span>
+                {% if(talkUser.avatar) %}
+                    <img src="{{ asset('uploads/avatars/') ~ talkUser.avatar }}" alt="" style="width:50px; height:50px;"/>
+                {% endif %}
+                {{ reply.author }} | {{ reply.replyAt|date('d-m-Y H:i:s') }}
+            </span>
+            <p>{{ reply.content }}</p>
+            {% if reply.screenshot %}
+                <img src="{{ asset('uploads/screenshots/replys/') ~ reply.screenshot }}" alt="" />
+            {% endif %}
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}            
+                {% if reply.author == app.user.username %}
+                    <a href="{{ url('symfonyReplyEdit', {'id': reply.id}) }}" >Edit</a><a href="{{ url('symfonyTalkReplyDelete', {'id': reply.id}) }}" >Delete</a>
+                {% endif %}
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <div id="display_reply">
+        {{ render(controller('LearnerBundle:SymfonyTalk:Reply', { 'talk_id': symfonyTalk.id })) }}
+    </div>
+{% else %}
+    <div class="reply">
+        <a href="{{ url('login') }}" class="light_button">Reply</a>
+        <a href="{{ url('createSymfonyTalk') }}" class="light_button">Add New</a>
+    </div>
+{% endif %}
+
+{% endblock %}
+{% block footer %}{{parent()}}{% endblock %}
+
+
